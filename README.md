@@ -4,7 +4,7 @@
 
 ## *Log Update*
 
-### v1.2.0
+### v1.2.0 - 21 Maret 2025
 - Menghapus dashbord pengajuan adopt
 - membuat redirect dari halaman detail ke halaman chat dengan mengambil data email_pemilik dari tabel hewan
 
