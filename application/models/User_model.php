@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 class User_model extends CI_Model {
     public function check_user($email, $password) {
         $this->db->where('email', $email);
@@ -18,6 +20,4 @@ class User_model extends CI_Model {
         ];
         return $this->db->insert('users', $data);
     }
-    
 }
-

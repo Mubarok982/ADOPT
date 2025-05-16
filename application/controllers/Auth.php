@@ -35,7 +35,7 @@ class Auth extends CI_Controller
                 $this->session->set_userdata('user_name', $user->name);
 
                 // Redirect ke halaman hewan setelah login berhasil
-                redirect('hewan');
+                redirect('dashboard');
             } else {
                 // Jika password salah
                 $this->session->set_flashdata('error', 'Password salah!');
