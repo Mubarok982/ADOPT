@@ -43,7 +43,7 @@ class Auth extends CI_Controller
             }
         } else {
             // Jika email tidak ditemukan
-            $this->session->set_flashdata('error', 'Email tidak terdaftar!');
+            $this->session->set_flashdata('');
             redirect('auth');
         }
     }

@@ -34,4 +34,10 @@ class Dosen_model extends CI_Model
         $this->db->where('id_dosen', $id);
         $this->db->delete('dosen');
     }
+
+    public function get_count() {
+    return $this->db->count_all('dosen');
+    }
 }
+
+

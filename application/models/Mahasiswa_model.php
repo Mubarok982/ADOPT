@@ -30,4 +30,7 @@ class Mahasiswa_model extends CI_Model
         $this->db->where('id_mahasiswa', $id);
         $this->db->delete('mahasiswa');
     }
+    public function get_count() {
+        return $this->db->count_all('mahasiswa');
+    }
 }

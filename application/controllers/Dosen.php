@@ -17,6 +17,7 @@ class Dosen extends CI_Controller
 
     public function index()
     {
+        $data['title'] = 'Data Dosen';
         $data['dosen'] = $this->Dosen_model->get_all_dosen();
         $this->load->view('Dosen/dosen', $data);
     }

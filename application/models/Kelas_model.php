@@ -29,5 +29,7 @@ public function delete_kelas($id)
     $this->db->where('id_kelas', $id);
     $this->db->delete('kelas');
 }
+public function get_count() {
+    return $this->db->count_all('kelas');
 }
-
+}

@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->load->library('session');
 
         if (!$this->session->userdata('user_id')) {
@@ -21,7 +21,23 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $this->load->view('Dashboard/dashboard'); // Halaman utama dashboard kosong / sambutan
+        $this->load->model('Jadwal_model');
+        $this->load->model('Ipk_model');
+        $data['jadwal'] = $this->Jadwal_model->getAllJadwal();
+        // Ambil data IPK dari model
+        $data['ipk_mahasiswa'] = $this->Ipk_model->get_all_with_nama();
+        // Kirim data IPK ke view dashboard
+
+        $this->load->model('Mahasiswa_model');  // Pastikan begini
+        $this->load->model('Matkul_model');
+        $this->load->model('Dosen_model');
+        $this->load->model('Kelas_model');
+
+        $data['count_mahasiswa'] = $this->Mahasiswa_model->get_count();
+        $data['count_matkul']    = $this->Matkul_model->get_count();
+        $data['count_dosen']     = $this->Dosen_model->get_count();
+        $data['count_kelas']     = $this->Kelas_model->get_count();
+        $this->load->view('Dashboard/dashboard', $data);
     }
 
     public function dosen()
