@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2025 at 09:51 AM
+-- Generation Time: May 19, 2025 at 03:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,7 +40,7 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`id_dosen`, `nidn`, `nama_dosen`, `email`, `no_telp`) VALUES
-(2, 'D002', 'Dr. Beni Hidayat', 'beni@kampus.ac.id', '082100000002'),
+(2, '234567', 'Prof. Budi', 'budi@univ.ac.id', '082345678901'),
 (3, 'D003', 'Dr. Citra Dewi', 'citra@kampus.ac.id', '082100000003'),
 (4, 'D004', 'Dr. Dedi Kurniawan', 'dedi@kampus.ac.id', '082100000004'),
 (5, 'D005', 'Dr. Elly Nurlaili', 'elly@kampus.ac.id', '082100000005'),
@@ -59,7 +59,9 @@ INSERT INTO `dosen` (`id_dosen`, `nidn`, `nama_dosen`, `email`, `no_telp`) VALUE
 (18, 'D018', 'Dr. Reni Marlina', 'reni@kampus.ac.id', '082100000018'),
 (19, 'D019', 'Dr. Siska Meilani', 'siska@kampus.ac.id', '082100000019'),
 (20, 'D020', 'Dr. Tommy Nugraha', 'tommy@kampus.ac.id', '082100000020'),
-(21, '73746272', 'rizqy', 'rizqymubarok99@gmail.com', '083456789017');
+(21, '123456', 'Dr. Andi', 'andi@univ.ac.id', '081234567890'),
+(22, '234567', 'Prof. Budi', 'budi@univ.ac.id', '082345678901'),
+(24, '73746272', 'rizqy', 'rizqymubarok99@gmail.com', '083456789017');
 
 -- --------------------------------------------------------
 
@@ -73,6 +75,41 @@ CREATE TABLE `ipk_mahasiswa` (
   `semester` int(11) NOT NULL,
   `ipk` decimal(3,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ipk_mahasiswa`
+--
+
+INSERT INTO `ipk_mahasiswa` (`id`, `id_mahasiswa`, `semester`, `ipk`) VALUES
+(13, 'MKS001', 1, 3.25),
+(15, 'MKS003', 2, 3.50),
+(16, 'MKS001', 2, 3.60),
+(17, 'MKS004', 3, 2.90);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal`
+--
+
+CREATE TABLE `jadwal` (
+  `id_jadwal` int(11) NOT NULL,
+  `id_dosen` int(11) NOT NULL,
+  `kode_matkul` varchar(20) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `hari` varchar(20) NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_selesai` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jadwal`
+--
+
+INSERT INTO `jadwal` (`id_jadwal`, `id_dosen`, `kode_matkul`, `id_kelas`, `hari`, `jam_mulai`, `jam_selesai`) VALUES
+(7, 20, 'CS121', 22, 'Senin', '08:00:00', '10:00:00'),
+(8, 21, 'CS122', 23, 'Selasa', '10:00:00', '12:00:00'),
+(9, 22, 'CS123', 24, 'Rabu', '13:00:00', '15:00:00');
 
 -- --------------------------------------------------------
 
@@ -91,8 +128,6 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `nama_ruangan`) VALUES
-(2, 'Kelas B', 'Ruang 102'),
-(3, 'Kelas C', 'Ruang 103'),
 (4, 'Kelas D', 'Ruang 104'),
 (5, 'Kelas E', 'Ruang 105'),
 (6, 'Kelas F', 'Ruang 201'),
@@ -111,7 +146,9 @@ INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `nama_ruangan`) VALUES
 (19, 'Kelas S', 'Ruang 404'),
 (20, 'Kelas T', 'Ruang 405'),
 (21, 'f15', 'Lab Komputer s1'),
-(22, 'f15', 'Lab Komputer s1');
+(22, 'f15', 'Lab Komputer s1'),
+(23, 'TI-1A', 'Ruang 101'),
+(24, 'TI-1B', 'Ruang 102');
 
 -- --------------------------------------------------------
 
@@ -150,7 +187,11 @@ INSERT INTO `mahasiswa` (`nim`, `nama_mahasiswa`, `email`, `no_telp`, `id_mahasi
 ('MHS017', 'Qori Shafira', 'qori017@example.com', '081234567017', 'MHS017'),
 ('MHS018', 'Rina Widya', 'rina018@example.com', '081234567018', 'MHS018'),
 ('MHS019', 'Sigit Wicaksono', 'sigit019@example.com', '081234567019', 'MHS019'),
-('MHS020', 'Tina Ismail', 'tina020@example.com', '081234567020', 'MHS020');
+('MHS020', 'Tina Ismail', 'tina020@example.com', '081234567020', 'MHS020'),
+('2201001', 'Andi', 'andi@email.com', '081234567890', 'MKS001'),
+('2201003', 'Cici', 'cici@email.com', '081234567892', 'MKS003'),
+('2201004', 'Dewi', 'dewi@email.com', '081234567893', 'MKS004'),
+('2201005', 'Eka', 'eka@email.com', '081234567894', 'MKS005');
 
 -- --------------------------------------------------------
 
@@ -169,7 +210,6 @@ CREATE TABLE `matkul` (
 --
 
 INSERT INTO `matkul` (`kode_matkul`, `nama_matkul`, `sks`) VALUES
-('CS102', 'Struktur Data', 3),
 ('CS103', 'Basis Data', 3),
 ('CS104', 'Jaringan Komputer', 2),
 ('CS105', 'Sistem Operasi', 3),
@@ -187,7 +227,10 @@ INSERT INTO `matkul` (`kode_matkul`, `nama_matkul`, `sks`) VALUES
 ('CS117', 'Etika Profesi TI', 2),
 ('CS118', 'Cloud Computing', 3),
 ('CS119', 'DevOps dan CI/CD', 2),
-('CS120', 'Komputasi Paralel', 3);
+('CS120', 'Komputasi Paralel', 3),
+('CS121', 'Algoritma dan Pemrograman', 3),
+('CS122', 'Struktur Data', 3),
+('CS123', 'Basis Data', 3);
 
 -- --------------------------------------------------------
 
@@ -208,7 +251,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_mahasiswa`, `name`, `email`, `password`) VALUES
-(1, NULL, 'ari', 'ari123@gmail.com', '$2y$10$GHvyIF7hwSjWlfjgSFJYmuQZBrvO7KA3Q95H5GGDr7aFD6N/Zi2W.');
+(1, NULL, 'ari', 'ari123@gmail.com', '$2y$10$GHvyIF7hwSjWlfjgSFJYmuQZBrvO7KA3Q95H5GGDr7aFD6N/Zi2W.'),
+(2, NULL, 'Rizqy Mubarok', 'rizqymubarok99@gmail.com', '$2y$10$3jcU.vbWoKPfgvbCXLcyNeXQZ1SmtBkw3AaK6azy4uEWS2fKl0fF.');
 
 --
 -- Indexes for dumped tables
@@ -225,7 +269,16 @@ ALTER TABLE `dosen`
 --
 ALTER TABLE `ipk_mahasiswa`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_mahasiswa` (`id_mahasiswa`);
+  ADD KEY `fk_ipk_mahasiswa_mahasiswa` (`id_mahasiswa`);
+
+--
+-- Indexes for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`id_jadwal`),
+  ADD KEY `id_dosen` (`id_dosen`),
+  ADD KEY `kode_matkul` (`kode_matkul`),
+  ADD KEY `id_kelas` (`id_kelas`);
 
 --
 -- Indexes for table `kelas`
@@ -261,25 +314,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_dosen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `ipk_mahasiswa`
 --
 ALTER TABLE `ipk_mahasiswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -289,7 +348,17 @@ ALTER TABLE `users`
 -- Constraints for table `ipk_mahasiswa`
 --
 ALTER TABLE `ipk_mahasiswa`
+  ADD CONSTRAINT `fk_ipk_mahasiswa` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id_mahasiswa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_ipk_mahasiswa_mahasiswa` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id_mahasiswa`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ipk_mahasiswa_ibfk_1` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa` (`id_mahasiswa`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `dosen` (`id_dosen`) ON DELETE CASCADE,
+  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`kode_matkul`) REFERENCES `matkul` (`kode_matkul`) ON DELETE CASCADE,
+  ADD CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`

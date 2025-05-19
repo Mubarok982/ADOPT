@@ -12,7 +12,6 @@ class Dashboard extends CI_Controller
         if (!$this->session->userdata('user_id')) {
             redirect('auth/login');
         }
-
         $this->load->model('Dosen_model');
         $this->load->model('Matkul_model');
         $this->load->model('Mahasiswa_model');
@@ -24,11 +23,8 @@ class Dashboard extends CI_Controller
         $this->load->model('Jadwal_model');
         $this->load->model('Ipk_model');
         $data['jadwal'] = $this->Jadwal_model->getAllJadwal();
-        // Ambil data IPK dari model
         $data['ipk_mahasiswa'] = $this->Ipk_model->get_all_with_nama();
-        // Kirim data IPK ke view dashboard
-
-        $this->load->model('Mahasiswa_model');  // Pastikan begini
+        $this->load->model('Mahasiswa_model'); 
         $this->load->model('Matkul_model');
         $this->load->model('Dosen_model');
         $this->load->model('Kelas_model');
